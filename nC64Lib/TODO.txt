@@ -1,0 +1,6 @@
+
+
+TODO
+
+    check new screen clear  ( fix bug location )
+    

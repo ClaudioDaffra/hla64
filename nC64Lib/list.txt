@@ -1,0 +1,875 @@
+
+; 64tass Turbo Assembler Macro V1.56.2625 listing file
+; 64tass --verbose-list -L list.txt -C -a -B -i -o x.prg tst/prova/prova00.asm
+; Thu Aug  8 19:51:30 2024
+
+;Offset	;Hex		;Monitor	;Source
+
+;******  Processing input file: tst/prova/prova00.asm
+
+
+					.include "../../lib/libCD.asm"
+
+;******  Processing file: tst/prova/../../lib/libCD.asm
+
+
+
+					;--------------------------------------------------------------- cpu, encoding
+
+					CPU6502	.macro
+					.endmacro
+
+					;--------------------------------------------------------------- basic program with sys call
+
+					.weak
+=$0801						PROGRAM_ADDRESS	=	$0801
+=2024						PROGRAM_LINE	=	2024
+					.endweak
+
+					.weak
+=$c100						PROGRAM_STACK_ADDRESS	=	$c100
+=$ff						PROGRAM_STACK_SIZE   	=	$ff
+					.endweak
+
+					PROGRAM	.macro	_BASIC_ADDRESS=PROGRAM_ADDRESS,_LINE=PROGRAM_LINE
+					.endmacro
+
+					;--------------------------------------------------------------- global macro
+
+					lday	.macro
+					.endmacro
+
+					load_imm_ay	.macro
+					.endmacro
+
+					ldfac1	.macro
+					.endmacro
+
+					ldfac2	.macro
+					.endmacro
+
+					load_address_ay	.macro
+					.endmacro
+
+					load_address_zpWord0	.macro
+					.endmacro
+
+					load_address_zpWord1	.macro
+					.endmacro
+
+					load_imm_zpWord0	.macro
+					.endmacro
+
+					load_imm_zpWord1	.macro
+					.endmacro
+
+					C2	.macro
+					.endmacro
+
+					sev .macro
+					.endm
+
+
+;******  Return to file: tst/prova/prova00.asm
+
+
+					* = $801
+.0801	4c 42 08	jmp $0842	    jmp main
+
+					.include "../../lib/libC64.asm"
+
+;******  Processing file: tst/prova/../../lib/libC64.asm
+
+
+					;**********
+					;           C64
+					;**********
+
+					;--------------------------------------------------------------- zero page
+
+=$02					zpa     	= $02
+=$2a					zpx     	= $2a
+=$52					zpy     	= $52
+
+=251					zpByte0		= 251
+=252					zpByte1		= 252
+=253					zpByte2		= 253
+=254					zpByte3		= 254
+
+=251					zpwa		= 251
+=252					zpwy		= 252
+=251					zpWord00	= 251
+=252					zpWord01	= 252
+=253					zpWord10	= 253
+=254					zpWord11	= 254
+
+					; zpDWord0
+
+=$fb					zpDWord0_addr = $fb
+
+=$fb					zpDWord0        = $fb
+=$fb					    zpWord0     = $fb
+=$fb					        zpWord0hi   = $fb
+=252					        zpWord0lo   = $fb+1
+=$fd					    zpWord1     = $fd
+=$fd					        zpWord1hi   = $fd
+=254					        zpWord1lo   = $fd+1
+
+					; zpDWord1
+
+=$62					zpDWord1_addr = $62	;	conv_fac1_to_dWord0
+
+=$62					zpDWord1    = $62
+=$62					    zpWord2     = $62
+=$62					        zpWord2hi   = $62
+=99					        zpWord2lo   = $62+1
+=$64					    zpWord3     = $64
+=$64					        zpWord3hi   = $64
+=101					        zpWord3lo   = $64+1
+
+					; zpDWord2
+
+=$03					zpDWord2_addr = $03
+
+=$03					zpDWord2    = $03
+=$03					    zpWord4     = $03       ;   $B1AA, execution address of routine converting floating point to integer.
+=$03					        zpWord4hi   = $03
+=4					        zpWord4lo   = $03+1
+=$05					    zpWord5     = $05       ;   $B391, execution address of routine converting integer to floating point.
+=$05					        zpWord5hi   = $05
+=6					        zpWord5lo   = $05+1
+
+					;--------------------------------------------------------------- include
+
+					.include "libMATH.asm"
+
+;******  Processing file: tst/prova/../../lib/libMATH.asm
+
+
+
+					;**********
+					;           MATH
+					;**********
+
+.0804					math	.proc
+
+						;	...................................................... neg u8,s8	byte
+
+						neg_u8s8	.proc
+						.endproc
+
+						;	...................................................... neg u16,s16	word
+
+					    neg_u16s16       .proc
+					    .endproc
+
+						;	...................................................... neg f40	real
+
+						neg_f40	.proc
+						.endproc
+
+						;	...................................................... true
+
+.0804						true	.proc
+.0804	a9 01		lda #$01			lda #1
+.0806	60		rts				rts
+						.endproc
+
+						;	...................................................... false
+
+.0807						false	.proc
+.0807	a9 00		lda #$00			lda #0
+.0809	60		rts				rts
+						.endproc
+
+						;	...................................................... not u8,s8	byte
+
+						not_u8s8	.proc
+						.endproc
+
+						;	...................................................... not u16,s16	word
+
+						not_u16s16	.proc
+						.endproc
+
+						;	...................................................... not f40		real
+
+.080a						not_f40	.proc
+.080a	a9 15		lda #$15			lda #<not_f40.zero
+.080c	a0 08		ldy #$08			ldy #>not_f40.zero
+.080e	20 5b bc	jsr $bc5b			jsr $bc5b  ; -> a
+							; = Compare FAC1 with memory contents at A/Y (lo/high)
+							;	$00 FAC1 == AY
+							;	$01 FAC1  > AY
+							;   $FF FAC1  < AY
+.0811	f0 f1		beq $0804			beq math.true
+.0813	d0 f2		bne $0807			bne math.false
+							;rts
+>0815	00 00 00 00 00				zero	.byte  $00,$00,$00,$00,$00
+						.endproc
+
+
+						;	...................................................... add u16,s16	word
+						;
+						;	dest	a,y := zpWord0 + a,y
+
+						add_u16s16	.proc
+						.endproc
+
+						;	...................................................... add_f40
+
+						;	dest	fac1 := fac1 + fac2
+
+						add_f40	.proc
+						.endproc
+
+						;	...................................................... mul_f40
+						;
+						;	dest	fac1 := fac1 * fac2
+
+						mul_f40	.proc
+						.endproc
+
+						; ---------------------------------------------------------------   mul_bytes
+					    ;
+					    ;   multiply 2 bytes A and Y, zpWord1 as byte in A
+					    ;   (signed or unsigned)
+					    ;
+					    ;   input   :   a,y
+					    ;   output  :   a
+
+=$81a					    mul_u8          =   mul_bytes
+=$81a					    mul_s8          =   mul_bytes
+=$81a					    multiply_bytes  =   mul_bytes
+
+					    mul_bytes    .proc
+					    .endproc
+
+					    ; --------------------------------------------------------------- mul_bytes_into_u16
+					    ;
+					    ;   multiply 2 bytes A and Y, zpWord1 as word in A/Y (unsigned)
+					    ;
+					    ;   input   :   a,y
+					    ;   output  :   a/y
+					    ;
+
+					    mul_u8s8    .proc
+					    .endproc
+
+						;..........................................................................
+					    ;
+					    ;   multiply two 16-bit words into a 32-bit zpDWord1  (signed and unsigned)
+					    ;
+					    ;      input    :
+					    ;
+					    ;           A/Y             = first  16-bit number,
+					    ;           zpWord0 in ZP   = second 16-bit number
+					    ;
+					    ;      output   :
+					    ;
+					    ;           zpDWord1  4-bytes/32-bits product, LSB order (low-to-high)
+						;			a/Y		  16 bit
+					    ;
+					    ;     result    :     zpDWord1  :=  zpWord0 * zpWord1
+					    ;
+					    ;   LSB 0123
+					    ;
+					    ;   0   zpWord0+0   low
+					    ;   1   zpWord0+1
+					    ;   2   zpWord0+2   high
+					    ;   3   zpWord0+3
+
+					    mul_u16s16    .proc
+					    .endproc
+
+						; ...................................................... mul_u8s8_fast
+						;
+						;	https://www.nesdev.org/wiki/8-bit_Multiply
+						;
+						;	input	:	A moltiplicando
+						;				Y moltiplicatore
+						; 	output	:	A/Y
+						;
+
+						mul_u8s8_fast .proc
+						.endproc
+
+						; ...................................................... mul_u16s16_fast
+						;
+						; https://github.com/TobyLobster/multiply_test/blob/main/tests/mult55.a
+						; mult55.a
+						; from The Merlin 128 Macro Assembler disk, via 'The Fridge': http://www.ffd2.com/fridge/math/mult-div.s
+						; TobyLobster: with an optimisation for speed (changing pha/pla to tax/txa), then fully unrolled
+						; (see mult2)
+						;
+						; 16 bit x 16 bit unsigned multiply, 32 bit result
+						; Average cycles: 483.50
+						; 344 bytes
+						; acc*aux -> [acc,acc+1,ext,ext+1] (low,hi) 32 bit result
+
+						mul_u16s16_fast	.proc
+						.endproc
+
+					 ;........................................ div_s8
+					    ;
+					    ;   divide A by Y, result quotient in A, remainder in Y   (signed)
+					    ;
+					    ;   Inputs:
+					    ;       a       =   8-bit numerator
+					    ;       y       =   8-bit denominator
+					    ;   Outputs:
+					    ;       a       =   a / y       ( signed   )
+					    ;       y       =   remainder   ( unsigned )
+					    ;
+
+					    div_s8    .proc
+					    .endproc
+
+					    internal_div_u8    .proc
+					    .endproc
+
+					    ;........................................ div_u8
+					    ;
+					    ;   divide A by Y, result quotient in A, remainder in Y   (unsigned)
+					    ;
+					    ;   Inputs:
+					    ;       a       =   8-bit numerator
+					    ;       y       =   8-bit denominator
+					    ;   Outputs:
+					    ;       a       =   a / y       ( unsigned  )
+					    ;       y       =   remainder   ( unsigned  )
+					    ;
+
+					    div_u8    .proc
+					    .endproc
+
+					    ;.......................................................................    div_u16
+					    ;
+					    ;   divide two unsigned words (16 bit each) into 16 bit results
+					    ;
+					    ;    input:
+					    ;            zpWord0    :   16 bit number,
+					    ;            A/Y        :   16 bit divisor
+					    ;    output:
+					    ;            zpWord1    :   16 bit remainder,
+					    ;            A/Y        :   16 bit division result
+					    ;            zpWord0
+					    ;            flag V     :   1 = division by zero
+					    ;
+					    ;   signed word division: make everything positive and fix sign afterwards
+
+					    div_s16    .proc
+					    .endproc
+
+					    ;.......................................................................    div_u16
+					    ;
+					    ;   divide two unsigned words (16 bit each) into 16 bit results
+					    ;
+					    ;    input:
+					    ;            zpWord0    :   16 bit number,
+					    ;            A/Y        :   16 bit divisor
+					    ;    output:
+					    ;            zpWord1    :   in ZP: 16 bit remainder,
+					    ;            A/Y        :   16 bit division result
+					    ;            zpWord0
+					    ;            flag V     :   1 = division by zero
+					    ;
+
+					    div_u16    .proc
+					    .endproc
+
+						;	...................................................... mul_f40
+						;
+						;	dest	fac1 := fac1 * fac2
+
+						div_f40	.proc
+						.endproc
+
+					    ;   ........................................................ mod %
+
+					    mod_u8    .proc
+					    .pend
+
+					    mod_u16    .proc
+					    .pend
+
+					    mod_s8    .proc
+					    .pend
+
+					    mod_s16    .proc
+					    .pend
+
+						;	...................................................... mul_f40
+						;
+						;	dest	fac1 := fac1 * fac2
+
+						mod_f40	.proc
+						.endproc
+
+						;	...................................................... sub_u16s16
+						;
+						;	dest	ay := zpWord0 - ay
+
+						sub_u16s16	.proc
+						.endproc
+
+						;	...................................................... sub_f40
+
+						;	dest	fac1 := fac1 - fac2
+
+						sub_f40	.proc
+						.endproc
+
+
+					.endproc
+
+					math_neg_u8s8	.macro
+					.endm
+
+					math_neg_u16s16	.macro
+					.endm
+
+					math_neg_f40	.macro
+					.endm
+
+					math_not_u8s8_fast	.macro
+					 .endm
+
+					math_not_u16s16_fast	.macro
+					.endm
+
+					math_not_f40_fast	.macro
+					.endm
+
+
+;******  Return to file: tst/prova/../../lib/libC64.asm
+
+					.include "libKERNEL.asm"
+
+;******  Processing file: tst/prova/../../lib/libKERNEL.asm
+
+
+					;**********
+					;           KERNAL
+					;**********
+
+					;--------------------------------------------------------------- KERNAL
+
+					kernel .proc
+					.endproc
+
+
+
+;******  Return to file: tst/prova/../../lib/libC64.asm
+
+					.include "libBASIC.asm"
+
+;******  Processing file: tst/prova/../../lib/libBASIC.asm
+
+
+					;**********
+					;           BASIC
+					;**********
+
+					;--------------------------------------------------------------- BASIC
+
+					basic .proc
+					.endproc
+
+
+
+;******  Return to file: tst/prova/../../lib/libC64.asm
+
+					.include "libSTACK.asm"
+
+;******  Processing file: tst/prova/../../lib/libSTACK.asm
+
+
+					;**********
+					;           STACK
+					;**********
+
+					;    stack.sp        :    stack pointer top
+					;    stack.bp        :    base pointer
+					;    stack.address   :    stack address bottom
+					;    stack.size      :    stack size
+
+					; -------------------------------------------------------------- macro
+					;
+					;    stack.alloc sp,bp
+					;
+					; -------------------------------------------------------------- macro
+
+					stack_begin .macro
+					.endm
+
+					stack_end .macro
+					.endm
+
+					stack_alloc .macro
+					.endm
+
+					stack_dealloc .macro
+					.endm
+
+					stack_load_offset_x .macro
+					.endm
+
+					stack_load_address .macro
+					.endm
+
+					stack_store_word    .macro
+					.endm
+
+					stack_load_word    .macro
+					.endm
+
+					stack_store_byte    .macro
+					.endm
+
+					stack_load_byte    .macro
+					.endm
+
+					stack_store_real    .macro
+					.endm
+
+					stack_load_real    .macro
+					.endm
+
+					; -------------------------------------------------------------- param
+					;
+					; hanna la funzione di preservare i riferimenti allo stack
+					param_begin    .macro
+					.endmacro
+					;    qui i riferimenti verranno modificati eseguendo il push dei parametri
+					param_end    .macro
+					.endmacro
+
+					; vengono ripristinate le condizioni iniziale
+					; tuttavia quando si chiamerà la nuova funzione , questa allochera il nuovo stack
+					; tenendo conto dei parametri passati e anche dei parametri nei suoi stack locali
+					; call(function)
+
+					; -------------------------------------------------------------- stack
+
+.081a					stack    .proc
+
+					    ; ---------------------------------------------------------- stack.address
+					    .weak
+=$c100					        address    = PROGRAM_STACK_ADDRESS    ;    49408+255=49663 ; libCD.asm
+=$ff					        size    = PROGRAM_STACK_SIZE    ;    $c100+$ff=$c1ff ; libCD.asm
+					    .endweak
+
+					    ; ---------------------------------------------------------- stack.sp
+>081a	ff				    sp    .byte stack.size
+					    ; ---------------------------------------------------------- stack.bp
+>081b	ff				    bp    .byte stack.size
+					    ; ---------------------------------------------------------- stack.alloc
+					    ; stack size 10 255
+					    ;            sp 255 -245
+					    ;            bp 255 =255
+					    alloc    .proc
+					    .endproc
+					    ; ---------------------------------------------------------- stack.dealloc
+					    ; stack size 10 255
+					    ;            sp 245    +255
+					    ;            bp 255 =255
+					    dealloc    .proc
+					    .endproc
+					    ; ---------------------------------------------------------- stack.address ( TOP )
+					    get_sp_ay    .proc
+					    .endproc
+					    ; ---------------------------------------------------------- stack.address ( BASE )
+					    get_bp_ay    .proc
+					    .endproc
+					    ; ---------------------------------------------------------- stack.base.offset ( BASE )
+					    get_bp_offset_pos_x    .proc
+					    .endproc
+					    ; ---------------------------------------------------------- stack.base.absolute ( BASE )
+					    get_bp_offset_absolute_ay    .proc
+					    .endproc
+
+					    ; ---------------------------------------------------------- store
+					    ; input :
+					    ;    zpWord0 source
+					    ;    ay         dest
+					    ; usage :
+					    ;     load_address_zpWord0    kLocalAsmReal00
+					    ;     stack_load_address         local_stack.b
+
+					    set    .proc
+					    .endproc
+
+					    ; swap zpWord0 zpWord1
+
+					    get    .proc
+					    .endproc
+
+					    ; ---------------------------------------------------------- push
+					    push    .proc
+					    .endproc
+
+					    ; ---------------------------------------------------------- pop
+					    pop        .proc
+					    .endproc
+
+					    ; ---------------------------------------------------------- stack.load
+					    load    .proc
+					    .endproc
+
+					.endproc
+
+
+
+;******  Return to file: tst/prova/../../lib/libC64.asm
+
+					.include "libSTDIO.asm"
+
+;******  Processing file: tst/prova/../../lib/libSTDIO.asm
+
+
+					;**********
+					;           STDIO
+					;**********
+
+					std	.proc
+					.endproc
+
+					; https://www.c64-wiki.com/wiki/control_character
+
+					petscii .proc
+					.endproc
+
+					ascii .proc
+					.endproc
+
+;******  Return to file: tst/prova/../../lib/libC64.asm
+
+					.include "libMEM.asm"
+
+;******  Processing file: tst/prova/../../lib/libMEM.asm
+
+
+					;**********
+					;           MEM
+					;**********
+
+.081c					mem	.proc
+
+						; ---------------------------------------------------------- mem.copy.short
+						; input :	a 		size
+						; 			zpWord0	source
+						;			zpWord1	dest
+						;
+.081c						copy	.proc
+.081c							short	.proc
+.081c	8d 27 08	sta $0827				sta mem.copy.short.size+1
+.081f	a0 00		ldy #$00				ldy #0
+.0821								-
+.0821	b1 fb		lda ($fb),y				lda (zpWord0),y
+.0823	91 fd		sta ($fd),y				sta (zpWord1),y
+.0825	c8		iny					iny
+.0826							size:
+.0826	c0 05		cpy #$05				cpy #5	; self-modified(5)
+.0828	d0 f7		bne $0821				bne -
+.082a	60		rts					rts
+							.endproc
+						.endproc
+
+						; ---------------------------------------------------------- load
+
+						load	.proc
+						.endproc
+
+						; ---------------------------------------------------------- store
+
+						store	.proc
+						.endproc
+
+					.endproc
+
+
+;******  Return to file: tst/prova/../../lib/libC64.asm
+
+					.include "libCONV.asm"
+
+;******  Processing file: tst/prova/../../lib/libCONV.asm
+
+
+
+					;**********
+					;           CD
+					;**********
+
+					;	*		u8	u16	s8	s16	real
+					;	u8		x	=	=	=	=
+					;	u16		.	x	.	.	.
+					;	s8		.	.	x	.	.
+					;	s16		.	.	.	x	.
+					;	real	.	.	.	.	x
+
+					conv .proc
+					.endproc
+
+					;	.......................................................... u8
+
+					cast_from_u8_to_u16	.macro
+					.endmacro
+
+					cast_from_u8_to_s8	.macro
+					.endmacro
+
+					ext_sign_u8_to_s16	.proc
+					.endproc
+
+					cast_from_u8_to_s16	.macro
+					.endmacro
+
+					;$b3a2 = Convert unsigned 8-bit integer held in Y to a FP number in FAC1
+					cast_from_u8_to_real	.macro
+					.endmacro
+
+					;	.......................................................... s8
+
+					cast_from_s8_to_u16	.macro
+					.endmacro
+
+					cast_from_s8_to_u8	.macro
+					.endmacro
+
+					cast_from_s8_to_s16	.macro
+					.endmacro
+
+					;$bc3c = Convert signed 8-bit integer held in A to a FP number in FAC1
+					cast_from_s8_to_real	.macro
+					.endmacro
+
+					;	.......................................................... u16
+
+					cast_from_u16_to_u8	.macro
+					.endmacro
+
+					cast_from_u16_to_s8	.macro
+					.endmacro
+
+					cast_from_u16_to_s16	.macro
+					.endmacro
+
+					;$b391 = Convert signed 16-bit integer held in Y/A (lo/high) to a FP number in FAC1
+					cast_from_u16_to_real	.macro
+					.endmacro
+
+					;	.......................................................... s16
+
+					cast_from_s16_to_u8	.macro
+					.endmacro
+
+					cast_from_s16_to_s8	.macro
+					.endmacro
+
+					cast_from_s16_to_u16	.macro
+					.endmacro
+
+					;$b391 = Convert signed 16-bit integer held in Y/A (lo/high) to a FP number in FAC1
+					cast_from_s16_to_real	.macro
+					.endmacro
+
+					;	.......................................................... real
+
+					cast_from_real_to_u8	.macro
+					.endmacro
+
+					cast_from_real_to_s8	.macro
+					.endmacro
+
+
+					cast_from_real_to_u16	.macro
+					.endmacro
+
+					;$bc44 = Convert signed 16-bit integer held in FAC1 at $63 (lo) and $62 (high) to FP
+					cast_from_real_to_s16	.macro
+					.endmacro
+
+
+
+
+
+;******  Return to file: tst/prova/../../lib/libC64.asm
+
+
+					;-rw-r--r-- 1 claudio claudio 20175 Apr 24 12:34 libArray.asm
+					;-rw-r--r-- 1 claudio claudio  7188 Apr 24 12:34 libBasic.asm	-
+					;-rw-r--r-- 1 claudio claudio 52784 May 17 12:33 libC64.asm		-
+					;-rw-r--r-- 1 claudio claudio 20435 Apr 24 12:34 libConv.asm	-
+					;-rw-r--r-- 1 claudio claudio 24541 Apr 24 12:34 libFloat.asm
+					;-rw-r--r-- 1 claudio claudio 21553 Apr 24 12:34 libGraph.asm
+					;-rw-r--r-- 1 claudio claudio 37836 Apr 24 12:34 libMath.asm	-
+					;-rw-r--r-- 1 claudio claudio 24255 Apr 24 12:34 libSTDIO.asm	-
+					;-rw-r--r-- 1 claudio claudio 42449 May 18 13:12 libStack.asm	-
+					;-rw-r--r-- 1 claudio claudio  9876 Apr 24 12:34 libString.asm
+					;-rw-r--r-- 1 claudio claudio  9876 Apr 24 12:34 libKernel.asm  -
+
+					store_pByte .proc	; source : a , dest (zpWord0)
+					.endproc
+
+					store_pWord .proc	; source : ay , dest (zpWord0)
+					.endproc
+
+					store_pReal .proc	; source : fac1 , dest (zpWord0)
+					.endproc
+
+
+;******  Return to file: tst/prova/prova00.asm
+
+
+
+
+.082b					sub1 .proc
+
+.082b	85 fb		sta $fb		     sta zpWord0
+.082d	84 fc		sty $fc		     sty zpWord0+1
+.082f	b1 fb		lda ($fb),y	     lda (zpWord0),y
+.0831	60		rts		     rts
+
+					.endproc
+
+
+.0832					sub2 .proc
+
+.0832	a5 ff		lda $ff		     lda $ff
+.0834	60		rts		     rts
+
+					.endproc
+
+.0835					sub3 .proc
+
+.0835	85 fb		sta $fb		     sta zpWord0
+.0837	84 fc		sty $fc		     sty zpWord0+1
+.0839	b1 fb		lda ($fb),y	     lda (zpWord0),y
+.083b	8a		txa		     txa
+.083c	c8		iny		     iny
+.083d	b1 fb		lda ($fb),y	     lda (zpWord0),y
+.083f	aa		tax		     tax
+.0840	98		tya		     tya
+.0841	60		rts		     rts
+
+					.endproc
+
+.0842					main .proc
+
+.0842	20 2b 08	jsr $082b	    jsr sub1
+
+.0845	20 32 08	jsr $0832	    jsr sub2
+
+.0848	20 35 08	jsr $0835	    jsr sub3
+
+.084b	60		rts			rts
+
+					.endproc
+
+
+
+
+
+
+;******  End of listing

@@ -1,0 +1,1 @@
+64tass -C -a -B -i -s  -L list.txt  tst/utf8.txt.asm

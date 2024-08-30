@@ -1,0 +1,65 @@
+APP=cd
+CC=gcc
+LINK=gcc
+
+FLAGS=-Wall  -Wextra -pedantic -g
+LIBRARYS=-lm
+
+ALL : $(APP)
+
+ODIR=obj
+SDIR=src
+BDIR=bin
+LDIR=lib
+
+LIBS =  gc.o		\
+		hashMap.o	\
+		stdio.o		\
+		string.o
+
+OBJS =  error.o		\
+		stream.o	\
+		lexer.o		\
+		ast.o		\
+		scanner.o	\
+		expr.o		\
+		parser.o	\
+		codeGen.o	\
+		symbolTable.o\
+		main.o
+
+OBJ = $(patsubst %,$(ODIR)/%,$(OBJS))
+
+$(ODIR)/%.o: $(SDIR)/%.c 
+		$(CC) -c -o $@ $< $(FLAGS)
+
+LIB = $(patsubst %,$(LDIR)/%,$(LIBS))
+
+$(LDIR)/%.o: $(LDIR)/%.c
+		$(CC) -c -o $@ $< $(FLAGS) 
+
+ALLOBJ =  $(OBJ) $(LIB)
+
+$(APP):$(ALLOBJ) 
+		$(CC) -o $(BDIR)/$@ $^ $(flgags) $(LIBRARYS) 
+
+.PHONY: clean
+
+clean:
+		-rm $(BDIR)/$(APP) ; rm $(ODIR)/*.o ; rm $(LDIR)/*.o ; rm $(ODIR)/*.o ; rm *.o ;
+		-rm *.exe ; rm bin/*.exe  ; 
+		-rm *.obj ; rm tst/*.obj  ; 
+		-rm *.loader ; rm tst/*.loader  ; 		
+		-rm *.lexer ; rm tst/*.lexer  ; 
+		-rm *.parser ; rm tst/*.parser ;
+		-rm *.output ; rm tst/*.output  ;
+		-rm *.ast ; rm tst/*.ast ;
+		-rm *.node ; rm tst/*.node ;
+		-rm *.asm ; rm tst/*.asm ;
+		-rm *.vm ; rm tst/*.vm ;
+		-rm *.symTable ; rm tst/*.symTable ;
+		-rm *.out ; rm tst/*.out ;
+		-rm debug.lexer.txt ; rm tst/debug.lexer.txt ;
+		-rm list.txt
+		-rm a.out
+		-rm tst/*.prg

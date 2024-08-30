@@ -1,0 +1,1 @@
+64tass.exe -C -a -B -i %1.asm -o %1.prg

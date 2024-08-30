@@ -1,0 +1,1 @@
+64tass -C -a -B -i $1.asm -o x.prg

@@ -1,0 +1,1 @@
+64tass -C -a -B -i tst/utf8.txt.asm -o tst/x.prg
