@@ -1,0 +1,362 @@
+
+  RC[  4/  5] B[  0]K[  0] nTypeProgram        
+    --------------------------------------
+    RC[  4/  5] B[  0]K[  0] parent :  0x55ab637f2850
+    RC[  4/  5] B[  0]K[  0] prev   :  0x0
+    RC[  4/  5] B[  0]K[  0] ## Type
+    RC[  4/  5] B[  0]K[  0]   ID[      byte] K[  1] T[[  1] $[  1]
+    RC[  4/  5] B[  0]K[  0]   ID[      char] K[  1] T[[  5] $[  1]
+    RC[  4/  5] B[  0]K[  0]   ID[      word] K[  1] T[[  2] $[  2]
+    RC[  4/  5] B[  0]K[  0]   ID[       int] K[  1] T[[  6] $[  2]
+    RC[  4/  5] B[  0]K[  0]   ID[      real] K[  1] T[[ 10] $[  5]
+    RC[  4/  5] B[  0]K[  0]   ID[strutturablobale] K[  7] T[[ 13] $[ 10]
+    RC[  4/  5] B[  0]K[  0] ## Symbol
+    RC[  4/  5] B[  0]K[  0]   ID[    intero] K[  1] T[  6] $[  2] s[  3] o[  2]
+    RC[  4/  5] B[  0]K[  0]   ID[   gppluto] K[  2] T[  6] $[  2] s[  3] o[  4]
+    RC[  4/  5] B[  0]K[  0]   ID[     pippo] K[  1] T[  5] $[  1] s[  3] o[  5]
+    RC[  4/  5] B[  0]K[  0]   ID[       sub] K[  5] T[  5] $[  1] s[  3] o[  0]
+    RC[  4/  5] B[  0]K[  0]   ID[       fff] K[  5] T[  6] $[  2] s[  3] o[  0]
+    RC[  4/  5] B[  0]K[  0]   ID[      main] K[  5] T[  6] $[  2] s[  3] o[  0]
+    {
+        RC[ 15/  5] B[  0]K[  0] nTypeFunction        fn   sub () -> char $[014]
+        --------------------------------------
+        RC[ 15/  5] B[  0]K[  0] parent :  0x55ab637e2b90
+        RC[ 15/  5] B[  0]K[  0] prev   :  0x55ab637f2850
+        RC[ 15/  5] B[  0]K[  0] ## Type
+        RC[ 15/  5] B[  0]K[  0] ## Symbol
+        RC[ 15/  5] B[  0]K[  0]   ID[         x] K[  1] T[ 10] $[  5] s[  2] o[  5]
+        RC[ 15/  5] B[  0]K[  0]   ID[        px] K[  2] T[ 10] $[  5] s[  2] o[ 10]
+        RC[ 15/  5] B[  0]K[  0]   ID[        pw] K[  2] T[  2] $[  2] s[  2] o[ 12]
+          --------------------------------------
+          RC[ 20/  9] B[  0]K[  0] parent :  0x55ab637e3050
+          RC[ 20/  9] B[  0]K[  0] prev   :  0x55ab637e2b90
+          RC[ 20/  9] B[  0]K[  0] ## Type
+          RC[ 20/  9] B[  0]K[  0] ## Symbol
+          RC[ 20/  9] B[  0]K[  0]   ID[    pluto1] K[  1] T[  2] $[  2] s[  1] o[ 14]
+          {
+              - LHS
+                RC[ 22/ 10] B[  2]K[  1] eToken_id            @t[  4]        {pluto1}
+              - RHS
+                - LHS
+                  RC[ 22/ 20] B[  2]K[  2] eToken_id            t[  4]        {   pw}
+                - RHS
+                  - LHS
+                    RC[ 22/ 23] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                  - RHS
+                    RC[ 22/ 22] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    2]
+                  RC[ 22/ 22] B[  1]K[  3] nTypeBinOp           t[303] [*]
+                Cast Injection RHS :: 
+                    - LHS
+                      RC[ 22/ 23] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                    - RHS
+                      RC[ 22/ 22] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    2]
+                    RC[ 22/ 22] B[  1]K[  3] nTypeBinOp           t[303] [*]
+                  RC[ 22/ 22] B[  2]K[  3] nTypePrefix          t[326] [$word]
+                RC[ 22/ 22] B[  2]K[  3] nTypeBinOp           t[307] [+]
+              RC[ 22/ 17] B[  2]K[  3] nTypeBinOp           t[205] [:=]
+          }
+        
+        RC[ 25/  5] B[  0]K[  0] nTypeFunction        fn   fff () -> int $[020]
+        --------------------------------------
+        RC[ 25/  5] B[  0]K[  0] parent :  0x55ab637e3cd0
+        RC[ 25/  5] B[  0]K[  0] prev   :  0x55ab637f2850
+        RC[ 25/  5] B[  0]K[  0] ## Type
+        RC[ 25/  5] B[  0]K[  0] ## Symbol
+        RC[ 25/  5] B[  0]K[  0]   ID[        pw] K[  1] T[  2] $[  2] s[  2] o[  2]
+        RC[ 25/  5] B[  0]K[  0]   ID[        pb] K[  1] T[  1] $[  1] s[  2] o[  3]
+        RC[ 25/  5] B[  0]K[  0]   ID[        pr] K[  1] T[ 10] $[  5] s[  2] o[  8]
+          --------------------------------------
+          RC[ 30/  9] B[  0]K[  0] parent :  0x55ab637e4190
+          RC[ 30/  9] B[  0]K[  0] prev   :  0x55ab637e3cd0
+          RC[ 30/  9] B[  0]K[  0] ## Type
+          RC[ 30/  9] B[  0]K[  0] ## Symbol
+          RC[ 30/  9] B[  0]K[  0]   ID[        lb] K[  1] T[  1] $[  1] s[  1] o[  9]
+          RC[ 30/  9] B[  0]K[  0]   ID[        lr] K[  1] T[ 10] $[  5] s[  1] o[ 14]
+          RC[ 30/  9] B[  0]K[  0]   ID[      ptrw] K[  2] T[  2] $[  2] s[  1] o[ 16]
+          RC[ 30/  9] B[  0]K[  0]   ID[    provaW] K[  1] T[  2] $[  2] s[  1] o[ 18]
+          {
+              - LHS
+                RC[ 35/  9] B[  6]K[  2] eToken_id            t[  4]        {gppluto}
+              - RHS
+                - LHS
+                  RC[ 35/ 19] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                - RHS
+                  RC[ 35/ 17] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    2]
+                RC[ 35/ 17] B[  1]K[  3] nTypeBinOp           t[303] [*]
+              Cast Injection RHS :: 
+                  - LHS
+                    RC[ 35/ 19] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                  - RHS
+                    RC[ 35/ 17] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    2]
+                  RC[ 35/ 17] B[  1]K[  3] nTypeBinOp           t[303] [*]
+                RC[ 35/ 17] B[  2]K[  3] nTypePrefix          t[326] [$word]
+              RC[ 35/ 17] B[  2]K[  3] nTypeBinOp           t[307] [+]
+              - LHS
+                RC[ 37/  9] B[  2]K[  1] eToken_id            @t[  4]        {   pw}
+              - RHS
+                  RC[ 37/ 16] B[  2]K[  2] eToken_id            @t[  4]        { ptrw}
+                RC[ 37/ 15] B[  2]K[  6] nTypePrefix          t[318] [&]
+              RC[ 37/ 12] B[  2]K[  3] nTypeBinOp           t[205] [:=]
+              - LHS
+                RC[ 39/  9] B[  2]K[  1] eToken_id            @t[  4]        {provaW}
+              - RHS
+                  RC[ 39/ 22] B[  1]K[  3] eToken_integer       @t[  2]        {    1}
+                RC[ 39/ 19] B[  2]K[  6] nTypePrefix          t[318] [&]
+              RC[ 39/ 16] B[  2]K[  3] nTypeBinOp           t[205] [:=]
+              RC[ 41/ 13] B[  0]K[  0] asm                 
+              {
+              
+			stack_load_address provaW
+			stack_load_word
+			jsr std.print_u16_dec
+		
+              }
+              --------------------------------------
+              RC[ 48/ 13] B[  0]K[  0] parent :  0x55ab637e53d0
+              RC[ 48/ 13] B[  0]K[  0] prev   :  0x55ab637e4190
+              RC[ 48/ 13] B[  0]K[  0] ## Type
+              RC[ 48/ 13] B[  0]K[  0] ## Symbol
+              {
+                  --------------------------------------
+                  RC[ 49/ 17] B[  0]K[  0] parent :  0x55ab637e56b0
+                  RC[ 49/ 17] B[  0]K[  0] prev   :  0x55ab637e53d0
+                  RC[ 49/ 17] B[  0]K[  0] ## Type
+                  RC[ 49/ 17] B[  0]K[  0] ## Symbol
+                  RC[ 49/ 17] B[  0]K[  0]   ID[multiblocint] K[  1] T[  6] $[  2] s[  1] o[ 20]
+                  {
+                      - LHS
+                        RC[ 51/ 17] B[  6]K[  1] eToken_id            @t[  4]        {multiblocint}
+                      - RHS
+                        RC[ 51/ 33] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                      RC[ 51/ 30] B[  6]K[  3] nTypeBinOp           t[205] [:=]
+                  }
+              }
+          }
+        
+        RC[ 59/  5] B[  0]K[  0] nTypeFunction        fn  main () -> int $[009]
+        --------------------------------------
+        RC[ 59/  5] B[  0]K[  0] parent :  0x55ab637e5d50
+        RC[ 59/  5] B[  0]K[  0] prev   :  0x55ab637f2850
+        RC[ 59/  5] B[  0]K[  0] ## Type
+        RC[ 59/  5] B[  0]K[  0] ## Symbol
+          --------------------------------------
+          RC[ 61/  9] B[  0]K[  0] parent :  0x55ab637e6030
+          RC[ 61/  9] B[  0]K[  0] prev   :  0x55ab637e5d50
+          RC[ 61/  9] B[  0]K[  0] ## Type
+          RC[ 61/  9] B[  0]K[  0]   ID[     point] K[  7] T[[ 13] $[  3]
+          RC[ 61/  9] B[  0]K[  0]   ID[      rect] K[  7] T[[ 13] $[  8]
+          RC[ 61/  9] B[  0]K[  0] ## Symbol
+          RC[ 61/  9] B[  0]K[  0]   ID[    plutow] K[  1] T[  2] $[  2] s[  1] o[  2]
+          RC[ 61/  9] B[  0]K[  0]   ID[    plutob] K[  1] T[  1] $[  1] s[  1] o[  3]
+          RC[ 61/  9] B[  0]K[  0]   ID[     pword] K[  2] T[  2] $[  2] s[  1] o[  5]
+          RC[ 61/  9] B[  0]K[  0]   ID[      uw16] K[  1] T[  2] $[  2] s[  1] o[  7]
+          RC[ 61/  9] B[  0]K[  0]   ID[     pbyte] K[  2] T[  1] $[  1] s[  1] o[  8]
+          RC[ 61/  9] B[  0]K[  0]   ID[   risbyte] K[  1] T[  1] $[  1] s[  1] o[  9]
+          RC[ 61/  9] B[  0]K[  0]   ID[        p2] K[  7] T[ 13] $[  3] s[  1] o[  9]
+          RC[ 61/  9] B[  0]K[  0]   ID[       rr1] K[  2] T[ 13] $[  8] s[  1] o[  9]
+          {
+              - LHS
+                RC[ 86/  9] B[ 13]K[  2] eToken_id            t[  4]        {  rr1}
+              - RHS
+                - LHS
+                  RC[ 86/ 13] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    2]
+                - RHS
+                  RC[ 86/ 12] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    8]
+                RC[ 86/ 12] B[  1]K[  3] nTypeBinOp           t[303] [*]
+              Cast Injection RHS :: 
+                  - LHS
+                    RC[ 86/ 13] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    2]
+                  - RHS
+                    RC[ 86/ 12] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    8]
+                  RC[ 86/ 12] B[  1]K[  3] nTypeBinOp           t[303] [*]
+                RC[ 86/ 12] B[  2]K[  3] nTypePrefix          t[326] [$word]
+              RC[ 86/ 12] B[  2]K[  3] nTypeBinOp           t[307] [+]
+              - LHS
+                RC[ 88/  9] B[  2]K[  2] eToken_id            @t[  4]        {pword}
+              - RHS
+                  RC[ 88/ 18] B[ 13]K[  7] eToken_id            t[  4]        {   p2}
+                RC[ 88/ 20] B[  6]K[  3] member_id            t[320]        {    x} offset {02}
+              RC[ 88/ 15] B[  2]K[  3] nTypeBinOp           t[205] [:=]
+              RC[ 90/ 13] B[  0]K[  0] asm                 
+              {
+              
+            nop
+            nop
+            nop
+        
+              }
+              - LHS
+                  RC[ 96/  9] B[ 13]K[  7] eToken_id            @t[  4]        {   p2}
+                RC[ 96/ 11] B[  6]K[  3] member_id            t[320]        {    x} offset {02}
+              - RHS
+                RC[ 96/ 17] B[  2]K[  3] eToken_integer       t[  2]tn[  2] [ 1235]
+              RC[ 96/ 14] B[  6]K[  3] nTypeBinOp           t[205] [:=]
+              - LHS
+                RC[ 98/  9] B[  1]K[  1] eToken_id            @t[  4]        {plutob}
+              - RHS
+                RC[ 98/ 19] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [  123]
+              RC[ 98/ 16] B[  1]K[  3] nTypeBinOp           t[205] [:=]
+              RC[100/ 13] B[  0]K[  0] asm                 
+              {
+               ;49660 
+ 			stack_load_address plutob
+			jsr std.print_u16_dec
+		
+              }
+              RC[104/ 13] B[  0]K[  0] asm                 
+              {
+               ; 123
+ 			stack_load_address plutob
+			stack_load_byte
+			jsr std.print_u8_dec
+		
+              }
+              - LHS
+                RC[110/  9] B[  1]K[  2] eToken_id            @t[  4]        {pbyte}
+              - RHS
+                  RC[110/ 19] B[  1]K[  1] eToken_id            @t[  4]        {plutob}
+                RC[110/ 18] B[  2]K[  6] nTypePrefix          t[318] [&]
+              RC[110/ 15] B[  1]K[  3] nTypeBinOp           t[205] [:=]
+              RC[112/ 13] B[  0]K[  0] asm                 
+              {
+               ; 49655
+ 			stack_load_address pbyte
+			jsr std.print_u16_dec
+		
+              }
+              RC[116/ 13] B[  0]K[  0] asm                 
+              {
+               ;  49660
+ 			stack_load_address pbyte
+			stack_load_word
+			jsr std.print_u16_dec
+		
+              }
+              - LHS
+                RC[122/  9] B[  1]K[  1] eToken_id            @t[  4]        {risbyte}
+              - RHS
+                  RC[122/ 21] B[  1]K[  2] eToken_id            t[  4]        {pbyte}
+                RC[122/ 20] B[  2]K[  3] nTypePrefix          t[304] [*]
+              RC[122/ 17] B[  1]K[  3] nTypeBinOp           t[205] [:=]
+              RC[124/ 13] B[  0]K[  0] asm                 
+              {
+               ; 49654
+ 			stack_load_address risbyte
+			jsr std.print_u16_dec
+		
+              }
+              RC[128/ 13] B[  0]K[  0] asm                 
+              {
+               ; 123
+ 			stack_load_address risbyte
+			stack_load_byte
+			jsr std.print_u8_dec
+		
+              }
+              - LHS
+                RC[134/  9] B[  2]K[  1] eToken_id            @t[  4]        { uw16}
+              - RHS
+                - LHS
+                  RC[134/ 17] B[  1]K[  2] eToken_id            t[  4]        {pbyte}
+                - RHS
+                  - LHS
+                    RC[134/ 25] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                  - RHS
+                    RC[134/ 23] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                  RC[134/ 23] B[  1]K[  3] nTypeBinOp           t[303] [*]
+                Cast Injection RHS :: 
+                    - LHS
+                      RC[134/ 25] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                    - RHS
+                      RC[134/ 23] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                    RC[134/ 23] B[  1]K[  3] nTypeBinOp           t[303] [*]
+                  RC[134/ 23] B[  2]K[  3] nTypePrefix          t[326] [$word]
+                RC[134/ 23] B[  2]K[  3] nTypeBinOp           t[307] [+]
+              RC[134/ 14] B[  2]K[  3] nTypeBinOp           t[205] [:=]
+              RC[136/ 13] B[  0]K[  0] asm                 
+              {
+               ; 49656
+ 			stack_load_address uw16
+			stack_load_word
+			jsr std.print_u16_dec
+		
+              }
+              - LHS
+                RC[142/  9] B[  1]K[  2] eToken_id            @t[  4]        {pbyte}
+              - RHS
+                  RC[142/ 19] B[  1]K[  1] eToken_id            @t[  4]        {plutob}
+                RC[142/ 18] B[  2]K[  6] nTypePrefix          t[318] [&]
+              RC[142/ 15] B[  1]K[  3] nTypeBinOp           t[205] [:=]
+              RC[144/ 13] B[  0]K[  0] asm                 
+              {
+               ; 44
+			nop 
+			nop  
+			nop 
+		
+              }
+              - LHS
+                  RC[150/ 10] B[  1]K[  2] eToken_id            t[  4]        {pbyte}
+                RC[150/  9] B[  2]K[  3] nTypePrefix          t[304] [*]
+              - RHS
+                RC[150/ 20] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [   44]
+              RC[150/ 16] B[  2]K[  3] nTypeBinOp           t[205] [:=]
+              RC[152/ 13] B[  0]K[  0] asm                 
+              {
+               ;; 44
+ 			stack_load_address plutob
+			stack_load_byte
+			jsr std.print_u8_dec
+		
+              }
+              - LHS
+                  RC[158/ 15] B[  1]K[  2] eToken_id            t[  4]        {pbyte}
+                RC[158/  9] B[  6]K[  3] nTypePrefix          t[326] [$int]
+              - RHS
+                RC[158/ 23] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    2]
+              Cast Injection RHS :: 
+                  RC[158/ 23] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    2]
+                RC[158/ 21] B[  6]K[  3] nTypePrefix          t[326] [$int]
+              RC[158/ 21] B[  6]K[  3] nTypeBinOp           t[307] [+]
+                - LHS
+                  RC[160/ 18] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                - RHS
+                    RC[160/ 29] B[ 10]K[  3] eToken_real          t[  3]tn[ 10] [    1] {$81,$00,$00,$00,$00}
+                  RC[160/ 27] B[ 10]K[  3] nTypePrefix          t[313] [!]
+                Cast Injection LHS :: 
+                    RC[160/ 18] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                  RC[160/ 20] B[ 10]K[  3] nTypePrefix          t[326] [$real]
+                RC[160/ 20] B[ 10]K[  3] nTypeBinOp           t[307] [+]
+              RC[160/  9] B[  1]K[  3] nTypePrefix          t[326] [$byte]
+              RC[162/ 13] B[  0]K[  0] asm                 
+              {
+               
+			nop 
+			nop  
+			nop 
+		
+              }
+              - LHS
+                  - LHS
+                    RC[168/ 11] B[  1]K[  2] eToken_id            t[  4]        {pbyte}
+                  - RHS
+                    - LHS
+                      RC[168/ 17] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    2]
+                    - RHS
+                      RC[168/ 16] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                    RC[168/ 16] B[  1]K[  3] nTypeBinOp           t[303] [*]
+                  Cast Injection RHS :: 
+                      - LHS
+                        RC[168/ 17] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    2]
+                      - RHS
+                        RC[168/ 16] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [    1]
+                      RC[168/ 16] B[  1]K[  3] nTypeBinOp           t[303] [*]
+                    RC[168/ 16] B[  2]K[  3] nTypePrefix          t[326] [$word]
+                  RC[168/ 16] B[  2]K[  3] nTypeBinOp           t[307] [+]
+                RC[168/  9] B[  2]K[  3] nTypePrefix          t[304] [*]
+              - RHS
+                RC[168/ 24] B[  1]K[  3] eToken_integer       t[  2]tn[  1] [   44]
+              RC[168/ 20] B[  2]K[  3] nTypeBinOp           t[205] [:=]
+          }
+        
+    }

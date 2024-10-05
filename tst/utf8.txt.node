@@ -1,0 +1,166 @@
+
+ -> astMakeProgram       :: RC[  4/  5] tTok[021] tNum[000]
+ -> astMakeNodeBlock     :: RC[  4/  5] tTok[021] tNum[000]
+ -> astMakeFunction      :: RC[ 15/  5] tTok[016] tNum[000] [            function]
+ -> astMakeNodeBlock     :: RC[ 20/  9] tTok[022] tNum[000]
+ -> astMakeNodeTerm      :: RC[ 22/ 10] tTok[004] tNum[000] [              pluto1]
+ -> astMakeNodeTerm      :: RC[ 22/ 20] tTok[004] tNum[000] [                  pw]
+ -> astMakeNodeTerm      :: RC[ 22/ 23] tTok[002] tNum[004] [                   1]
+ -> astMakeNodeBinOp     :: RC[ 22/ 22] tTok[307] tNum[000] [                   +]
+ -> astMakeNodeTerm      :: RC[ 22/ 22] tTok[002] tNum[001] [              sizeof]
+ -> arithmetic pointer * :: RC[ 22/ 22] tTok[303] tNum[000] [                   *]
+ -> astMakeNodeBinOp     :: RC[ 22/ 22] tTok[303] tNum[000] [                   *]
+ -> arithmetic pointer + :: RC[ 22/ 22] tTok[307] tNum[000] [                   +]
+ -> astMakeNodeBinOp     :: RC[ 22/ 17] tTok[205] tNum[000] [                  :=]
+ -> astMakeFunction      :: RC[ 25/  5] tTok[016] tNum[000] [            function]
+ -> astMakeNodeBlock     :: RC[ 30/  9] tTok[020] tNum[000]
+ -> astMakeNodeTerm      :: RC[ 35/  9] tTok[004] tNum[000] [             gppluto]
+ -> astMakeNodeTerm      :: RC[ 35/ 19] tTok[002] tNum[004] [                   1]
+ -> astMakeNodeBinOp     :: RC[ 35/ 17] tTok[307] tNum[000] [                   +]
+ -> astMakeNodeTerm      :: RC[ 35/ 17] tTok[002] tNum[001] [              sizeof]
+ -> arithmetic pointer * :: RC[ 35/ 17] tTok[303] tNum[000] [                   *]
+ -> astMakeNodeBinOp     :: RC[ 35/ 17] tTok[303] tNum[000] [                   *]
+ -> arithmetic pointer + :: RC[ 35/ 17] tTok[307] tNum[000] [                   +]
+ -> astMakeNodeTerm      :: RC[ 37/  9] tTok[004] tNum[000] [                  pw]
+ -> astMakeNodeTerm      :: RC[ 37/ 16] tTok[004] tNum[000] [                ptrw]
+ -> astMakeNodePrefix    :: RC[ 37/ 15] tTok[318] tNum[000] [                   &]
+ -> astMakeNodeBinOp     :: RC[ 37/ 12] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodeTerm      :: RC[ 39/  9] tTok[004] tNum[000] [              provaW]
+ -> astMakeNodeTerm      :: RC[ 39/ 22] tTok[002] tNum[004] [                   1]
+ -> astMakeNodePrefix    :: RC[ 39/ 19] tTok[318] tNum[000] [                   &]
+ -> astMakeNodeBinOp     :: RC[ 39/ 16] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodeASM       :: RC[ 41/ 13] tTok[001] tNum[000] [
+			stack_load_address provaW
+			stack_load_word
+			jsr std.print_u16_dec
+		]
+ -> astMakeNodeBlock     :: RC[ 48/ 13] tTok[314] tNum[000]
+ -> astMakeNodeBlock     :: RC[ 49/ 17] tTok[021] tNum[000]
+ -> astMakeNodeTerm      :: RC[ 51/ 17] tTok[004] tNum[000] [        multiblocint]
+ -> astMakeNodeTerm      :: RC[ 51/ 33] tTok[002] tNum[004] [                   1]
+ -> astMakeNodeBinOp     :: RC[ 51/ 30] tTok[205] tNum[000] [                  :=]
+ -> astMakeFunction      :: RC[ 59/  5] tTok[016] tNum[000] [            function]
+ -> astMakeNodeBlock     :: RC[ 61/  9] tTok[004] tNum[000]
+ -> astMakeNodeTerm      :: RC[ 86/  9] tTok[004] tNum[000] [                 rr1]
+ -> astMakeNodeTerm      :: RC[ 86/ 13] tTok[002] tNum[004] [                   2]
+ -> astMakeNodeBinOp     :: RC[ 86/ 12] tTok[307] tNum[000] [                   +]
+ -> astMakeNodeTerm      :: RC[ 86/ 12] tTok[002] tNum[001] [              sizeof]
+ -> arithmetic pointer * :: RC[ 86/ 12] tTok[303] tNum[000] [                   *]
+ -> astMakeNodeBinOp     :: RC[ 86/ 12] tTok[303] tNum[000] [                   *]
+ -> arithmetic pointer + :: RC[ 86/ 12] tTok[307] tNum[000] [                   +]
+ -> astMakeNodeTerm      :: RC[ 88/  9] tTok[004] tNum[000] [               pword]
+ -> astMakeNodeTerm      :: RC[ 88/ 18] tTok[004] tNum[000] [                  p2]
+ -> astMakeNodeTerm      :: RC[ 88/ 21] tTok[004] tNum[000] [                   x]
+ -> astMakeNodeDot       :: RC[ 88/ 20] tTok[320] tNum[000] [                   .]
+ -> astMakeNodeBinOp     :: RC[ 88/ 15] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodeASM       :: RC[ 90/ 13] tTok[001] tNum[000] [
+            nop
+            nop
+            nop
+        ]
+ -> astMakeNodeTerm      :: RC[ 96/  9] tTok[004] tNum[000] [                  p2]
+ -> astMakeNodeTerm      :: RC[ 96/ 12] tTok[004] tNum[000] [                   x]
+ -> astMakeNodeDot       :: RC[ 96/ 11] tTok[320] tNum[000] [                   .]
+ -> astMakeNodeTerm      :: RC[ 96/ 17] tTok[002] tNum[004] [                1235]
+ -> astMakeNodeBinOp     :: RC[ 96/ 14] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodeTerm      :: RC[ 98/  9] tTok[004] tNum[000] [              plutob]
+ -> astMakeNodeTerm      :: RC[ 98/ 19] tTok[002] tNum[004] [                 123]
+ -> astMakeNodeBinOp     :: RC[ 98/ 16] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodeASM       :: RC[100/ 13] tTok[001] tNum[000] [ ;49660 
+ 			stack_load_address plutob
+			jsr std.print_u16_dec
+		]
+ -> astMakeNodeASM       :: RC[104/ 13] tTok[001] tNum[000] [ ; 123
+ 			stack_load_address plutob
+			stack_load_byte
+			jsr std.print_u8_dec
+		]
+ -> astMakeNodeTerm      :: RC[110/  9] tTok[004] tNum[000] [               pbyte]
+ -> astMakeNodeTerm      :: RC[110/ 19] tTok[004] tNum[000] [              plutob]
+ -> astMakeNodePrefix    :: RC[110/ 18] tTok[318] tNum[000] [                   &]
+ -> astMakeNodeBinOp     :: RC[110/ 15] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodeASM       :: RC[112/ 13] tTok[001] tNum[000] [ ; 49655
+ 			stack_load_address pbyte
+			jsr std.print_u16_dec
+		]
+ -> astMakeNodeASM       :: RC[116/ 13] tTok[001] tNum[000] [ ;  49660
+ 			stack_load_address pbyte
+			stack_load_word
+			jsr std.print_u16_dec
+		]
+ -> astMakeNodeTerm      :: RC[122/  9] tTok[004] tNum[000] [             risbyte]
+ -> astMakeNodeTerm      :: RC[122/ 21] tTok[004] tNum[000] [               pbyte]
+ -> astMakeNodePrefix    :: RC[122/ 20] tTok[304] tNum[000] [                   *]
+ -> astMakeNodeBinOp     :: RC[122/ 17] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodeASM       :: RC[124/ 13] tTok[001] tNum[000] [ ; 49654
+ 			stack_load_address risbyte
+			jsr std.print_u16_dec
+		]
+ -> astMakeNodeASM       :: RC[128/ 13] tTok[001] tNum[000] [ ; 123
+ 			stack_load_address risbyte
+			stack_load_byte
+			jsr std.print_u8_dec
+		]
+ -> astMakeNodeTerm      :: RC[134/  9] tTok[004] tNum[000] [                uw16]
+ -> astMakeNodeTerm      :: RC[134/ 17] tTok[004] tNum[000] [               pbyte]
+ -> astMakeNodeTerm      :: RC[134/ 25] tTok[002] tNum[004] [                   1]
+ -> astMakeNodeBinOp     :: RC[134/ 23] tTok[307] tNum[000] [                   +]
+ -> astMakeNodeTerm      :: RC[134/ 23] tTok[002] tNum[001] [              sizeof]
+ -> arithmetic pointer * :: RC[134/ 23] tTok[303] tNum[000] [                   *]
+ -> astMakeNodeBinOp     :: RC[134/ 23] tTok[303] tNum[000] [                   *]
+ -> arithmetic pointer + :: RC[134/ 23] tTok[307] tNum[000] [                   +]
+ -> astMakeNodeBinOp     :: RC[134/ 14] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodeASM       :: RC[136/ 13] tTok[001] tNum[000] [ ; 49656
+ 			stack_load_address uw16
+			stack_load_word
+			jsr std.print_u16_dec
+		]
+ -> astMakeNodeTerm      :: RC[142/  9] tTok[004] tNum[000] [               pbyte]
+ -> astMakeNodeTerm      :: RC[142/ 19] tTok[004] tNum[000] [              plutob]
+ -> astMakeNodePrefix    :: RC[142/ 18] tTok[318] tNum[000] [                   &]
+ -> astMakeNodeBinOp     :: RC[142/ 15] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodeASM       :: RC[144/ 13] tTok[001] tNum[000] [ ; 44
+			nop 
+			nop  
+			nop 
+		]
+ -> astMakeNodeTerm      :: RC[150/ 10] tTok[004] tNum[000] [               pbyte]
+ -> astMakeNodePrefix    :: RC[150/  9] tTok[304] tNum[000] [                   *]
+ -> astMakeNodeTerm      :: RC[150/ 20] tTok[002] tNum[004] [                  44]
+ -> astMakeNodeBinOp     :: RC[150/ 16] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodeASM       :: RC[152/ 13] tTok[001] tNum[000] [ ;; 44
+ 			stack_load_address plutob
+			stack_load_byte
+			jsr std.print_u8_dec
+		]
+ -> astMakeNodeTerm      :: RC[158/ 15] tTok[004] tNum[000] [               pbyte]
+ -> astMakeNodePrefix    :: RC[158/  9] tTok[326] tNum[000] [                $int]
+ -> astMakeNodeTerm      :: RC[158/ 23] tTok[002] tNum[004] [                   2]
+ -> astMakeNodeBinOp     :: RC[158/ 21] tTok[307] tNum[000] [                   +]
+ -> astMakeNodeTerm      :: RC[160/ 18] tTok[002] tNum[004] [                   1]
+ -> astMakeNodeTerm      :: RC[160/ 29] tTok[003] tNum[012] [                 1.0]
+ -> astMakeNodePrefix    :: RC[160/ 27] tTok[313] tNum[000] [                   !]
+ -> astMakeNodeBinOp     :: RC[160/ 20] tTok[307] tNum[000] [                   +]
+ -> astMakeNodePrefix    :: RC[160/  9] tTok[326] tNum[000] [               $byte]
+ -> astMakeNodeASM       :: RC[162/ 13] tTok[001] tNum[000] [ 
+			nop 
+			nop  
+			nop 
+		]
+ -> astMakeNodeTerm      :: RC[168/ 11] tTok[004] tNum[000] [               pbyte]
+ -> astMakeNodeTerm      :: RC[168/ 17] tTok[002] tNum[004] [                   2]
+ -> astMakeNodeBinOp     :: RC[168/ 16] tTok[307] tNum[000] [                   +]
+ -> astMakeNodeTerm      :: RC[168/ 16] tTok[002] tNum[001] [              sizeof]
+ -> arithmetic pointer * :: RC[168/ 16] tTok[303] tNum[000] [                   *]
+ -> astMakeNodeBinOp     :: RC[168/ 16] tTok[303] tNum[000] [                   *]
+ -> arithmetic pointer + :: RC[168/ 16] tTok[307] tNum[000] [                   +]
+ -> astMakeNodePrefix    :: RC[168/  9] tTok[304] tNum[000] [                   *]
+ -> astMakeNodeTerm      :: RC[168/ 24] tTok[002] tNum[004] [                  44]
+ -> astMakeNodeBinOp     :: RC[168/ 20] tTok[205] tNum[000] [                  :=]
+ -> astMakeNodePrefix    :: RC[ 22/ 22] tTok[326] tNum[000] [               $word]
+ -> astMakeNodePrefix    :: RC[ 35/ 17] tTok[326] tNum[000] [               $word]
+ -> astMakeNodePrefix    :: RC[ 86/ 12] tTok[326] tNum[000] [               $word]
+ -> astMakeNodePrefix    :: RC[134/ 23] tTok[326] tNum[000] [               $word]
+ -> astMakeNodePrefix    :: RC[158/ 21] tTok[326] tNum[001] [                $int]
+ -> astMakeNodePrefix    :: RC[160/ 20] tTok[326] tNum[000] [               $real]
+ -> astMakeNodePrefix    :: RC[168/ 16] tTok[326] tNum[000] [               $word]
